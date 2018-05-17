@@ -1,0 +1,41 @@
+Tutorial que sigue más o menos los pasos de https://angular.io/tutorial pero cambiando
+empleados por empleados y guarda las diferentes etapas con git. Además lo modificamos un poco 
+para incluir EventEmitter, formularios y autenticación (según https://www.sitepoint.com/angular-2-authentication-protecting-private-content/)
+El servidor rest lo simulamos con un json-server, que es un mock server
+que tira de un fichero en el mismo proyecto (ver https://www.sitepoint.com/angular-rxjs-create-api-service-rest-backend/).
+Más abajo hay documentación sobre el api generado. Además metemos un EmpleadosAdapterService 
+para centralizar el cambio entre el servicio mock y el servicio rest.
+
+Los comandos básicos de git (desde consola) para cambiar a los diferentes commits son los siguientes:
+
+- Cambiar a un commit particular:
+
+	git checkout <hash>
+	
+- Ver todo el history:
+
+	git log --all
+	
+ó
+
+	git log --full-history --pretty=oneline --date-order --decorate=full --skip=0 --max-count=100 master
+	
+- Ver en qué commit estoy:
+
+	git log (el primer commit que aparezca es en el que estoy)
+	
+ó
+
+	git log --full-history --pretty=oneline --date-order --decorate=full --skip=0 --max-count=100 HEAD
+
+* Servicio rest con json-server
+
+El servicio rest escucha de http://localhost:3000.
+
+The following endpoints are supported:
+
+GET /empleados: get all existing empleados
+GET /empleados/:id: get an existing empleado
+POST /empleados: create a new empleado
+PUT /empleados/:id: update an existing empleado
+DELETE /empleados/:id: delete an existing empleado
