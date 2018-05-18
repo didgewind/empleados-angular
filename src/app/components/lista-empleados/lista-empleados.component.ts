@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaEmpleadosComponent implements OnInit {
 
-  empleado: Empleado = new Empleado(1, '32452435H', 'Juan', 'Ruíz', 23);
+  empleadoSeleccionado: Empleado;
 
   empleados: Empleado[];
 
@@ -19,5 +19,8 @@ export class ListaEmpleadosComponent implements OnInit {
     this.empleados = this.empleadosService.getAllEmpleados();
   }
 
+  onSelect(empleado: Empleado) {
+    this.empleadoSeleccionado = empleado;
+  }
 
 }

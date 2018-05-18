@@ -1,14 +1,17 @@
 <h2>Mis Empleados</h2>
 <ul class="empleados">
-  <li *ngFor="let empleado of empleados">
+  <li *ngFor="let empleado of empleados" 
+        (click)="onSelect(empleado)"  [class.selected]="empleado === empleadoSeleccionado">
     <span class="badge">{{empleado.cif}}</span> {{empleado.nombre}} {{empleado.apellidos}}
      - {{empleado.edad}}
   </li>
 </ul>
 
-<h2>Detalles de {{ empleado.nombre | uppercase }} {{ empleado.apellidos | uppercase }} </h2>
-<div><span>id:</span> {{empleado.id}}</div>
-<div><label>cif: <input [(ngModel)]="empleado.cif" placeholder="cif"></label></div>
-<div><label>nombre:  <input [(ngModel)]="empleado.nombre" placeholder="nombre"></label></div>
-<div><label>apellidos:  <input [(ngModel)]="empleado.apellidos" placeholder="apellidos"></label></div>
-<div><label>edad:  <input [(ngModel)]="empleado.edad" placeholder="edad"></label></div>
+<div *ngIf="empleadoSeleccionado">
+  <h2>Detalles de {{ empleadoSeleccionado.nombre | uppercase }} {{ empleadoSeleccionado.apellidos | uppercase }} </h2>
+  <div><span>id:</span> {{empleadoSeleccionado.id}}</div>
+  <div><label>cif: <input [(ngModel)]="empleadoSeleccionado.cif" placeholder="cif"></label></div>
+  <div><label>nombre:  <input [(ngModel)]="empleadoSeleccionado.nombre" placeholder="nombre"></label></div>
+  <div><label>apellidos:  <input [(ngModel)]="empleadoSeleccionado.apellidos" placeholder="apellidos"></label></div>
+  <div><label>edad:  <input [(ngModel)]="empleadoSeleccionado.edad" placeholder="edad"></label></div>
+</div>

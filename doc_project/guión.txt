@@ -8,3 +8,4 @@ el componente
 - Añadir el id al empleado (inmutable por app). Crear interfaz EmpleadosIntService.
 Crear EmpleadosMockService con ng generate service services/empleados-mock. 
 Mostrar lista de empleados.
+- Master - Detail
