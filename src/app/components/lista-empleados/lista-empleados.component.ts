@@ -16,7 +16,13 @@ export class ListaEmpleadosComponent implements OnInit {
   constructor( private empleadosService: EmpleadosMockService) { }
 
   ngOnInit() {
-    this.empleados = this.empleadosService.getAllEmpleados();
+    this.getEmpleados();
+  }
+
+  getEmpleados() {
+    this.empleadosService.getAllEmpleados().subscribe(
+      empleados => this.empleados = empleados
+    );
   }
 
   onSelect(empleado: Empleado) {

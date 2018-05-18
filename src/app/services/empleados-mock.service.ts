@@ -1,3 +1,4 @@
+import { Observable, of } from 'rxjs';
 import { Empleado } from './../empleado';
 import { EmpleadosIntService } from './empleados-int.service';
 import { Injectable } from '@angular/core';
@@ -19,7 +20,7 @@ export class EmpleadosMockService  implements EmpleadosIntService {
 
   constructor() { }
 
-  getAllEmpleados(): Empleado[] {
-    return this.empleados;
+  getAllEmpleados(): Observable<Empleado[]> {
+    return of(this.empleados);
   }
 }
