@@ -1,0 +1,6 @@
+- Instalar node, angular-cli, crear app de empleados
+- Cambiar título
+- Crear componente lista-empleados. Crear var empleado, mostrarla en el componente, mostrar
+componente en el padre
+- Crear modelo Empleado y cambiar var empleado a una instancia de Empleado. Mostrarla en
+el componente
