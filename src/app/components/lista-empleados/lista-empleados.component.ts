@@ -1,3 +1,4 @@
+import { EmpleadosMockService } from './../../services/empleados-mock.service';
 import { Empleado } from './../../empleado';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaEmpleadosComponent implements OnInit {
 
-  empleado: Empleado = new Empleado('32452435H', 'Juan', 'Ruíz', 23);
+  empleado: Empleado = new Empleado(1, '32452435H', 'Juan', 'Ruíz', 23);
 
-  constructor() { }
+  empleados: Empleado[];
+
+  constructor( private empleadosService: EmpleadosMockService) { }
 
   ngOnInit() {
+    this.empleados = this.empleadosService.getAllEmpleados();
   }
+
 
 }

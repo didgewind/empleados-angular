@@ -1,4 +1,13 @@
+<h2>Mis Empleados</h2>
+<ul class="empleados">
+  <li *ngFor="let empleado of empleados">
+    <span class="badge">{{empleado.cif}}</span> {{empleado.nombre}} {{empleado.apellidos}}
+     - {{empleado.edad}}
+  </li>
+</ul>
+
 <h2>Detalles de {{ empleado.nombre | uppercase }} {{ empleado.apellidos | uppercase }} </h2>
+<div><span>id:</span> {{empleado.id}}</div>
 <div><label>cif: <input [(ngModel)]="empleado.cif" placeholder="cif"></label></div>
 <div><label>nombre:  <input [(ngModel)]="empleado.nombre" placeholder="nombre"></label></div>
 <div><label>apellidos:  <input [(ngModel)]="empleado.apellidos" placeholder="apellidos"></label></div>

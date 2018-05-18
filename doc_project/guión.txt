@@ -4,3 +4,7 @@
 componente en el padre
 - Crear modelo Empleado y cambiar var empleado a una instancia de Empleado. Mostrarla en
 el componente
+- Cambio de datos con [(ngModel)]
+- Añadir el id al empleado (inmutable por app). Crear interfaz EmpleadosIntService.
+Crear EmpleadosMockService con ng generate service services/empleados-mock. 
+Mostrar lista de empleados.
