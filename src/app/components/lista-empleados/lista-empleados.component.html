@@ -1,5 +1,5 @@
 <h2>Detalles de {{ empleado.nombre | uppercase }} {{ empleado.apellidos | uppercase }} </h2>
-<div><span>cif: </span>{{empleado.cif}}</div>
-<div><span>nombre: </span>{{empleado.nombre}}</div>
-<div><span>apellidos: </span>{{empleado.apellidos}}</div>
-<div><span>edad: </span>{{empleado.edad}}</div>
+<div><label>cif: <input [(ngModel)]="empleado.cif" placeholder="cif"></label></div>
+<div><label>nombre:  <input [(ngModel)]="empleado.nombre" placeholder="nombre"></label></div>
+<div><label>apellidos:  <input [(ngModel)]="empleado.apellidos" placeholder="apellidos"></label></div>
+<div><label>edad:  <input [(ngModel)]="empleado.edad" placeholder="edad"></label></div>

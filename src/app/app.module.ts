@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ListaEmpleadosComponent } from './components/lista-empleados/lista-empleados.component';
@@ -10,7 +11,8 @@ import { ListaEmpleadosComponent } from './components/lista-empleados/lista-empl
     ListaEmpleadosComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
