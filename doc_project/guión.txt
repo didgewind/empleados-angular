@@ -9,3 +9,4 @@ el componente
 Crear EmpleadosMockService con ng generate service services/empleados-mock. 
 Mostrar lista de empleados.
 - Master - Detail
+- Master - detail component

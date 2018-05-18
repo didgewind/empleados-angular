@@ -7,11 +7,4 @@
   </li>
 </ul>
 
-<div *ngIf="empleadoSeleccionado">
-  <h2>Detalles de {{ empleadoSeleccionado.nombre | uppercase }} {{ empleadoSeleccionado.apellidos | uppercase }} </h2>
-  <div><span>id:</span> {{empleadoSeleccionado.id}}</div>
-  <div><label>cif: <input [(ngModel)]="empleadoSeleccionado.cif" placeholder="cif"></label></div>
-  <div><label>nombre:  <input [(ngModel)]="empleadoSeleccionado.nombre" placeholder="nombre"></label></div>
-  <div><label>apellidos:  <input [(ngModel)]="empleadoSeleccionado.apellidos" placeholder="apellidos"></label></div>
-  <div><label>edad:  <input [(ngModel)]="empleadoSeleccionado.edad" placeholder="edad"></label></div>
-</div>
+<app-detalle-empleado [empleado]="empleadoSeleccionado"></app-detalle-empleado>
