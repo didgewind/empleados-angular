@@ -9,6 +9,8 @@ import { Injectable } from '@angular/core';
 })
 export class EmpleadosMockService  implements EmpleadosIntService {
 
+  private nextId = 18;
+
   private empleados: Empleado[] = [
     new Empleado(11, '32452435H', 'Juan', 'Ruíz', 23),
       { id: 12, cif: '23452348T', nombre: 'Narco', apellidos: 'Bollo', edad: 18 },
@@ -23,6 +25,13 @@ export class EmpleadosMockService  implements EmpleadosIntService {
 
   getAllEmpleados(): Observable<Empleado[]> {
     this.mensajesService.add('Empleados recuperados');
+    console.log('tamaño del array de empleados: ' + this.empleados.length);
     return of(this.empleados);
+  }
+
+  addEmpleado(newEmpleado: Empleado): Observable<Empleado> {
+    newEmpleado.id = this.nextId++;
+    console.log('tamaño del array de empleados: ' + this.empleados.length);
+    return of(newEmpleado);
   }
 }

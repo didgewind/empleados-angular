@@ -4,5 +4,5 @@ import { Empleado } from './../empleado';
 export interface EmpleadosIntService {
 
     getAllEmpleados(): Observable<Empleado[]>;
-
+    addEmpleado(newEmpleado: Empleado): Observable<Empleado>;
 }

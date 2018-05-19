@@ -29,4 +29,12 @@ export class ListaEmpleadosComponent implements OnInit {
     this.empleadoSeleccionado = empleado;
   }
 
+  nuevoEmpleado() {
+    this.empleadoSeleccionado = new Empleado();
+  }
+
+  onNewEmpleado(empleado: Empleado) {
+    this.empleados.push(empleado);
+    this.empleadosService.addEmpleado(empleado);
+  }
 }

@@ -1,5 +1,5 @@
 import { Empleado } from './../../empleado';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-detalle-empleado',
@@ -8,12 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DetalleEmpleadoComponent implements OnInit {
 
-  @Input()
-  empleado: Empleado;
+  @Input() empleado: Empleado;
+  @Output() addEmpleado: EventEmitter<Empleado> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  save() {
+    this.addEmpleado.emit(this.empleado);
+  }
 }
