@@ -1,3 +1,4 @@
+import { MensajesService } from './mensajes.service';
 import { Observable, of } from 'rxjs';
 import { Empleado } from './../empleado';
 import { EmpleadosIntService } from './empleados-int.service';
@@ -18,9 +19,10 @@ export class EmpleadosMockService  implements EmpleadosIntService {
       { id: 17, cif: '09879876O', nombre: 'Josune', apellidos: 'Goikoetxea', edad: 32 },
   ];
 
-  constructor() { }
+  constructor( private mensajesService: MensajesService ) { }
 
   getAllEmpleados(): Observable<Empleado[]> {
+    this.mensajesService.add('Empleados recuperados');
     return of(this.empleados);
   }
 }
