@@ -1,6 +1,7 @@
 import { EmpleadosMockService } from './../../services/empleados-mock.service';
 import { Empleado } from './../../empleado';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-empleados',
@@ -9,11 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaEmpleadosComponent implements OnInit {
 
-  empleadoSeleccionado: Empleado;
-
   empleados: Empleado[];
 
-  constructor( private empleadosService: EmpleadosMockService) { }
+  constructor( 
+    private empleadosService: EmpleadosMockService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.getEmpleados();
@@ -26,7 +28,7 @@ export class ListaEmpleadosComponent implements OnInit {
   }
 
   onSelect(empleado: Empleado) {
-    this.empleadoSeleccionado = empleado;
+    this.router.navigate(['/listaEmpleados/detalle/' + empleado.id]);
   }
 
 }

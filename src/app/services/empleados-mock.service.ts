@@ -25,4 +25,10 @@ export class EmpleadosMockService  implements EmpleadosIntService {
     this.mensajesService.add('Empleados recuperados');
     return of(this.empleados);
   }
+
+  getEmpleado(id: number): Observable<Empleado> {
+    this.mensajesService.add(`Recuperado el empleado con id=${id}`);
+    return of(this.empleados.find(empleado => empleado.id === id));
+  }
+
 }

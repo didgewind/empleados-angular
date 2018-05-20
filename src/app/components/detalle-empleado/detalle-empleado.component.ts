@@ -1,5 +1,8 @@
+import { EmpleadosMockService } from './../../services/empleados-mock.service';
 import { Empleado } from './../../empleado';
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detalle-empleado',
@@ -11,9 +14,21 @@ export class DetalleEmpleadoComponent implements OnInit {
   @Input()
   empleado: Empleado;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private empleadosService: EmpleadosMockService,
+    private location: Location
+  ) { }
 
-  ngOnInit() {
+
+  ngOnInit(): void {
+    this.getEmpleado();
+  }
+
+  getEmpleado(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.empleadosService.getEmpleado(id)
+      .subscribe(empleado => this.empleado = empleado);
   }
 
 }
