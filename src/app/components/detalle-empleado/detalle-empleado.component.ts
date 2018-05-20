@@ -1,3 +1,4 @@
+import { EmpleadosDetalleService } from './../../services/empleados-detalle.service';
 import { EmpleadosMockService } from './../../services/empleados-mock.service';
 import { Empleado } from './../../empleado';
 import { Component, OnInit, Input } from '@angular/core';
@@ -17,12 +18,16 @@ export class DetalleEmpleadoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private empleadosService: EmpleadosMockService,
+    private empleadosDetalleService: EmpleadosDetalleService,
     private location: Location
   ) { }
 
 
   ngOnInit(): void {
     this.getEmpleado();
+    this.empleadosDetalleService.detallesEmpleado$.subscribe(
+      empleado => this.empleado = empleado
+    );
   }
 
   getEmpleado(): void {

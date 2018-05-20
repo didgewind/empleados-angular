@@ -1,3 +1,4 @@
+import { EmpleadosDetalleService } from './../../services/empleados-detalle.service';
 import { EmpleadosMockService } from './../../services/empleados-mock.service';
 import { Empleado } from './../../empleado';
 import { Component, OnInit } from '@angular/core';
@@ -12,8 +13,9 @@ export class ListaEmpleadosComponent implements OnInit {
 
   empleados: Empleado[];
 
-  constructor( 
+  constructor(
     private empleadosService: EmpleadosMockService,
+    private empleadosDetalleService: EmpleadosDetalleService,
     private router: Router
   ) { }
 
@@ -29,6 +31,7 @@ export class ListaEmpleadosComponent implements OnInit {
 
   onSelect(empleado: Empleado) {
     this.router.navigate(['/listaEmpleados/detalle/' + empleado.id]);
+    this.empleadosDetalleService.actualizaDetallesEmpleado(empleado);
   }
 
 }
