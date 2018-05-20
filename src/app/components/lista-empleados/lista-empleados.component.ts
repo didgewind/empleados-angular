@@ -1,6 +1,8 @@
+import { EmpleadosDetalleService } from './../../services/empleados-detalle.service';
 import { EmpleadosMockService } from './../../services/empleados-mock.service';
 import { Empleado } from './../../empleado';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-empleados',
@@ -9,14 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaEmpleadosComponent implements OnInit {
 
-  empleadoSeleccionado: Empleado;
-
   empleados: Empleado[];
 
-  constructor( private empleadosService: EmpleadosMockService) { }
+  constructor(
+    private empleadosService: EmpleadosMockService,
+    private empleadosDetalleService: EmpleadosDetalleService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.getEmpleados();
+    this.empleadosDetalleService.nuevoEmpleado$.subscribe(
+      empleado => {
+        this.empleados.push(empleado);
+        this.empleadosService.addEmpleado(empleado);
+      }
+    );
+
   }
 
   getEmpleados() {
@@ -26,15 +37,11 @@ export class ListaEmpleadosComponent implements OnInit {
   }
 
   onSelect(empleado: Empleado) {
-    this.empleadoSeleccionado = empleado;
+    this.router.navigate(['/listaEmpleados/detalle/' + empleado.id]);
+    this.empleadosDetalleService.actualizaDetallesEmpleado(empleado);
   }
 
   nuevoEmpleado() {
-    this.empleadoSeleccionado = new Empleado();
-  }
-
-  onNewEmpleado(empleado: Empleado) {
-    this.empleados.push(empleado);
-    this.empleadosService.addEmpleado(empleado);
+    this.router.navigate(['/listaEmpleados/nuevoEmpleado/']);
   }
 }

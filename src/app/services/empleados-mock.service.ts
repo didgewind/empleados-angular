@@ -25,13 +25,18 @@ export class EmpleadosMockService  implements EmpleadosIntService {
 
   getAllEmpleados(): Observable<Empleado[]> {
     this.mensajesService.add('Empleados recuperados');
-    console.log('tamaño del array de empleados: ' + this.empleados.length);
     return of(this.empleados);
   }
 
   addEmpleado(newEmpleado: Empleado): Observable<Empleado> {
     newEmpleado.id = this.nextId++;
-    console.log('tamaño del array de empleados: ' + this.empleados.length);
+    this.mensajesService.add(`Añadido empleado con id=${newEmpleado.id}`);
     return of(newEmpleado);
   }
+
+  getEmpleado(id: number): Observable<Empleado> {
+    this.mensajesService.add(`Recuperado el empleado con id=${id}`);
+    return of(this.empleados.find(empleado => empleado.id === id));
+  }
+
 }

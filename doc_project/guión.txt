@@ -14,3 +14,9 @@ Mostrar lista de empleados.
 - Ejercicio: servicio de mensajes app-wide. Dar las directrices básicas (un servicio - buzón de mensajes,
 produce el EmpleadosMockService y consume un nuevo componente MensajesComponent)
 - Añadir un empleado.
+- Enrutamiento. Primero enrutamiento simple y luego complejo (con hijo detalle empleado
+y comunicación a través de un servicio intermedio y subscripción a un subject para actualizar
+los detalles del empleado)
+- Como añadir empleado deja de funcionar, ejercicio: utilizar el mismo servicio de comunicación
+para actualizar la lista de empleados (explicar el this.route.url.subscribe en detalle-empleado
+para saber si estamos en detalle o en nuevoEmpleado)
