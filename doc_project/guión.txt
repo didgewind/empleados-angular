@@ -15,7 +15,7 @@ Mostrar lista de empleados.
 produce el EmpleadosMockService y consume un nuevo componente MensajesComponent)
 - Añadir un empleado. Ejercicio: deshabilitar el botón de Guardar y habilitarlo
 sólo cuando estemos en modo nuevo empleado (en los commits esto está hecho más adelante. La solución
-aquí sería que el padre nos lo comunicara mediante un @Input())
+aquí sería preguntar por el id del empleado que estamos mostrando)
 - Enrutamiento. Primero enrutamiento simple y luego complejo. Añadir hiperenlace en el app-root
 (esto en git está más adelante).
 Obtener el empleado en detalle a través de la url. Esto da un problema al seleccionar

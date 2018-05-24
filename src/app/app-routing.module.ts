@@ -1,3 +1,4 @@
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DetalleEmpleadoComponent } from './components/detalle-empleado/detalle-empleado.component';
 import { ListaEmpleadosComponent } from './components/lista-empleados/lista-empleados.component';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,15 @@ const routes: Routes = [
         }
 
       ]
-    }
+    },
+  { path: 'dashboard', component: DashboardComponent,
+    children: [
+      {
+        path: 'detalle/:id',
+        component: DetalleEmpleadoComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({

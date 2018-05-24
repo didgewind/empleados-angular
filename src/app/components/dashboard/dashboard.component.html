@@ -1,0 +1,15 @@
+<h3>Empleados Dashboard</h3>
+<div class="grid grid-pad">
+    <a *ngFor="let empleado of empleados" class="col-1-4"
+      routerLink="detalle/{{empleado.id}}">
+    <div class="module empleado">
+      <h4>{{empleado.nombre}}</h4>
+    </div>
+  </a>
+</div>
+<div class="slide-buttons">
+  <button (click)="onPatras()" [disabled]="btPatrasDisabled">&lt;</button>
+  <button (click)="onPalante()" [disabled]="btPalanteDisabled"
+    [style.float]="'right'">&gt;</button></div>
+<br/>
+<router-outlet></router-outlet>
