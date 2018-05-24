@@ -2,7 +2,7 @@ import { EmpleadosDetalleService } from './../../services/empleados-detalle.serv
 import { EmpleadosMockService } from './../../services/empleados-mock.service';
 import { Empleado } from './../../empleado';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lista-empleados',
@@ -12,31 +12,43 @@ import { Router } from '@angular/router';
 export class ListaEmpleadosComponent implements OnInit {
 
   empleados: Empleado[];
+  empleadoSeleccionado: Empleado;
 
   constructor(
     private empleadosService: EmpleadosMockService,
     private empleadosDetalleService: EmpleadosDetalleService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.getEmpleados();
+    this.getEmpleadosFromService();
     this.empleadosDetalleService.nuevoEmpleado$.subscribe(
-      empleado => {
-        this.empleados.push(empleado);
-        this.empleadosService.addEmpleado(empleado);
+      empleadoNuevo => {
+        this.empleadosService.addEmpleado(empleadoNuevo).subscribe(
+          empleado => {
+            this.empleados.push(empleado);
+            this.empleadoSeleccionado = empleado;
+        });
       }
     );
 
   }
 
-  getEmpleados() {
+  getEmpleadosFromService() {
     this.empleadosService.getAllEmpleados().subscribe(
-      empleados => this.empleados = empleados
-    );
+      empleados => {
+        this.empleados = empleados;
+        const firstChild = this.route.snapshot.firstChild;
+        if (firstChild) {
+          const id = +firstChild.paramMap.get('id');
+          this.empleadoSeleccionado = this.empleados.find(empleado => empleado.id === id);
+        }
+      });
   }
 
   onSelect(empleado: Empleado) {
+    this.empleadoSeleccionado = empleado;
     this.router.navigate(['/listaEmpleados/detalle/' + empleado.id]);
     this.empleadosDetalleService.actualizaDetallesEmpleado(empleado);
   }
