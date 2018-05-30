@@ -1,9 +1,12 @@
 import { MensajesService } from './mensajes.service';
 import { Observable, of } from 'rxjs';
-import { Empleado } from './../empleado';
+import { Empleado } from './../model/empleado';
 import { EmpleadosIntService } from './empleados-int.service';
 import { Injectable } from '@angular/core';
 
+/*
+ * Servicio mock de interacción con la fuente de datos
+ */
 @Injectable({
   providedIn: 'root'
 })

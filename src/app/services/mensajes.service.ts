@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 
+/*
+ * Servicio de comunicación entre productores y de mensajes
+ * y el componente de mensajes
+ */
 @Injectable({
   providedIn: 'root'
 })

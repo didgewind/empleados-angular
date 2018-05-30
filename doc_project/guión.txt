@@ -29,9 +29,9 @@ el empleado correspondiente en la lista (más adelante en el git)
 - Como añadir empleado deja de funcionar, ejercicio: utilizar el mismo servicio de comunicación
 para actualizar la lista de empleados (explicar el this.route.url.subscribe en detalle-empleado
 para saber si estamos en detalle o en nuevoEmpleado)
-- Ejercicio: Nuevo componente Dashboard que utiliza el mismo servicio de comunicación
-con DetalleEmpleadoComponent. Muestra 4 empleados en pantalla, pasarles éste código del
-template, y el .css del dashboard component:
+- Ejercicio: Nuevo componente Dashboard con hiperenlaces directamente en el .html
+(no utilizamos el servicio de comunicaciones). Muestra 4 empleados en pantalla, 
+pasarles este código del template, y el .css del dashboard component:
 
         <div class="grid grid-pad">
             <a *ngFor="..." class="col-1-4" ...>
@@ -40,3 +40,9 @@ template, y el .css del dashboard component:
                 </div>
             </a>
         </div>
+- Notar que con el Dashboard no usamos el servicio de comunicaciones pero sí se están 
+actualizando los detalles de los empleados al pinchar sobre ellos. Ejercicio: averiguar
+por qué (solución: porque nos hemos subscrito al this.route.url, por lo que al haber
+cambios en la url salta el código de actualización del empleado)
+- Explicar mecanismo de desubscripción de observables y subjects (con takeUntil y 
+ngOnDestroy) y xq no es necesario en ActivatedRoute ni en los métodos http.
