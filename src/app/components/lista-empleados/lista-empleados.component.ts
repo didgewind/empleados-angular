@@ -1,3 +1,5 @@
+import { EmpleadosAdapterService } from './../../services/empleados-adapter.service';
+import { EmpleadosRestService } from './../../services/empleados-rest.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { EmpleadosDetalleService } from './../../services/empleados-detalle.service';
@@ -21,7 +23,7 @@ export class ListaEmpleadosComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject();
 
   constructor(
-    private empleadosService: EmpleadosMockService,
+    private empleadosService: EmpleadosAdapterService,
     private empleadosDetalleService: EmpleadosDetalleService,
     private router: Router,
     private route: ActivatedRoute
@@ -48,6 +50,8 @@ export class ListaEmpleadosComponent implements OnInit, OnDestroy {
   /*
    * Para desubscribirnos del Subject/Observable this.empleadosDetalleService.nuevoEmpleado$
    * (visto en https://stackoverflow.com/questions/38008334/angular-rxjs-when-should-i-unsubscribe-from-subscription)
+   * Siendo una subscripción sólo podríamos desubscribirnos recibiendo el objeto subscription
+   * al subscribirnos e invocando unsubscribe() en ngOnDestroy
    */
   ngOnDestroy() {
     this.ngUnsubscribe.next();

@@ -8,6 +8,7 @@ import { DetalleEmpleadoComponent } from './components/detalle-empleado/detalle-
 import { MensajesComponent } from './components/mensajes/mensajes.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

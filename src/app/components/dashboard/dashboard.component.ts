@@ -1,3 +1,4 @@
+import { EmpleadosAdapterService } from './../../services/empleados-adapter.service';
 import { EmpleadosDetalleService } from './../../services/empleados-detalle.service';
 import { EmpleadosMockService } from './../../services/empleados-mock.service';
 import { Empleado } from './../../model/empleado';
@@ -21,7 +22,7 @@ export class DashboardComponent implements OnInit {
   private btPalanteDisabled = false;
 
   constructor(private route: ActivatedRoute,
-    private empleadosService: EmpleadosMockService) { }
+    private empleadosService: EmpleadosAdapterService) { }
 
   ngOnInit() {
     this.getEmpleadosFromService();

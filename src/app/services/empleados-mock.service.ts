@@ -1,8 +1,7 @@
-import { MensajesService } from './mensajes.service';
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Empleado } from './../model/empleado';
 import { EmpleadosIntService } from './empleados-int.service';
-import { Injectable } from '@angular/core';
 
 /*
  * Servicio mock de interacción con la fuente de datos
@@ -24,21 +23,18 @@ export class EmpleadosMockService  implements EmpleadosIntService {
       { id: 17, cif: '09879876O', nombre: 'Josune', apellidos: 'Goikoetxea', edad: 32 },
   ];
 
-  constructor( private mensajesService: MensajesService ) { }
+  constructor() { }
 
   getAllEmpleados(): Observable<Empleado[]> {
-    this.mensajesService.add('Empleados recuperados');
     return of(this.empleados);
   }
 
   addEmpleado(newEmpleado: Empleado): Observable<Empleado> {
     newEmpleado.id = this.nextId++;
-    this.mensajesService.add(`Añadido empleado con id=${newEmpleado.id}`);
     return of(newEmpleado);
   }
 
   getEmpleado(id: number): Observable<Empleado> {
-    this.mensajesService.add(`Recuperado el empleado con id=${id}`);
     return of(this.empleados.find(empleado => empleado.id === id));
   }
 

@@ -1,3 +1,4 @@
+import { EmpleadosAdapterService } from './../../services/empleados-adapter.service';
 import { EmpleadosDetalleService } from './../../services/empleados-detalle.service';
 import { EmpleadosMockService } from './../../services/empleados-mock.service';
 import { Empleado } from './../../model/empleado';
@@ -23,7 +24,7 @@ export class DetalleEmpleadoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private empleadosService: EmpleadosMockService,
+    private empleadosService: EmpleadosAdapterService,
     private empleadosDetalleService: EmpleadosDetalleService,
     private location: Location
   ) { }

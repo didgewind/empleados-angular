@@ -45,4 +45,8 @@ actualizando los detalles de los empleados al pinchar sobre ellos. Ejercicio: av
 por qué (solución: porque nos hemos subscrito al this.route.url, por lo que al haber
 cambios en la url salta el código de actualización del empleado)
 - Explicar mecanismo de desubscripción de observables y subjects (con takeUntil y 
-ngOnDestroy) y xq no es necesario en ActivatedRoute ni en los métodos http.
+ngOnDestroy) y xq no es necesario en ActivatedRoute (Angular destruye AR cuando
+cambiamos la ruta) ni en los métodos http (Observables finitos).
+- Servicio Rest con json-server. Inyectarlo en lista. Problema: incoherencia
+entre dashboard, lista y detalle. ¿Hace falta cambiarlo siempre en todos? No,
+podemos utilizar un adapter.
