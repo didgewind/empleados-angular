@@ -60,3 +60,4 @@ válido o no (ngForm)
 un nuevo empleado cuando el detalleEmpleado emita un nuevo empleado (cambiar los nombres
 de los métodos intermedios de nuevoEmpleado a actualizaEmpleado). La lista decide
 si es un nuevo empleado o uno a actualizar en función de id === 0.
+- Delete empleado, tap y catchError

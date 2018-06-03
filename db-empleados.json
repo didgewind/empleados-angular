@@ -1,25 +1,11 @@
 {
   "empleados": [
     {
-      "id": 1,
-      "cif": "23452435T",
-      "nombre": "Nemop",
-      "apellidos": "Payaso",
-      "edad": 18
-    },
-    {
       "id": 2,
       "cif": "23453453Y",
       "nombre": "Isabel",
       "apellidos": "Fuentes",
       "edad": 33
-    },
-    {
-      "id": 3,
-      "cif": "12341234E",
-      "nombre": "Fernando",
-      "apellidos": "Alonso",
-      "edad": 21
     },
     {
       "id": 4,

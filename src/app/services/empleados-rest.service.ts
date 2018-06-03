@@ -31,4 +31,9 @@ export class EmpleadosRestService implements EmpleadosIntService {
     const url = `${this.empleadosRestURL}/${updatedEmpleado.id}`;
     return this.http.put<Empleado>(url, updatedEmpleado);
   }
+
+  deleteEmpleado(heroToDelete: Empleado): Observable<Empleado> {
+    const url = `${this.empleadosRestURL}/${heroToDelete.id}`;
+    return this.http.delete<Empleado>(url);
+  }
 }

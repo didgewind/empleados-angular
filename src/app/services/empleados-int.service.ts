@@ -11,4 +11,5 @@ export interface EmpleadosIntService {
     addEmpleado(newEmpleado: Empleado): Observable<Empleado>;
     getEmpleado(id: number): Observable<Empleado>;
     updateEmpleado(updatedEmpleado: Empleado): Observable<Empleado>;
+    deleteEmpleado(empleadoToDelete: Empleado): Observable<Empleado>;
 }

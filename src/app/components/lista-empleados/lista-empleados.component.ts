@@ -81,7 +81,7 @@ export class ListaEmpleadosComponent implements OnInit, OnDestroy {
       empleados => {
         this.empleados = empleados;
         // Comprobamos si estamos en la ruta 'detalle' (hemos accedido
-        // entonce directamente a ella) para actualizar el empleado seleccionado
+        // entonces directamente a ella) para actualizar el empleado seleccionado
         // y que aparezca marcado en el html
         const firstChild = this.route.snapshot.firstChild;
         if (firstChild) {
@@ -93,9 +93,8 @@ export class ListaEmpleadosComponent implements OnInit, OnDestroy {
 
   onSelect(empleado: Empleado) {
     // Se ha seleccionado un nuevo empleado. Navegamos a la nueva ruta
-    // y se lo comunicamos a detalle-empleado por si la vista ya estaba
-    // creada para que actualice sus datos (si ya estaba visible
-    // el ngOnInit no se invoca)
+    // Ya no es necesario comunicarlo a DetalleEmpleado pues éste
+    // está subscrito a los cambios en la url
     this.empleadoSeleccionado = empleado;
     this.router.navigate(['/listaEmpleados/detalle/' + empleado.id]);
   }
@@ -105,5 +104,10 @@ export class ListaEmpleadosComponent implements OnInit, OnDestroy {
    */
   nuevoEmpleado() {
     this.router.navigate(['/listaEmpleados/nuevoEmpleado/']);
+  }
+
+  deleteEmpleado(empleado: Empleado): void {
+    this.empleadosService.deleteEmpleado(empleado).subscribe(
+      () => this.empleados = this.empleados.filter(h => h !== empleado));
   }
 }

@@ -56,4 +56,8 @@ export class EmpleadosMockService  implements EmpleadosIntService {
     return of(foundEmpleado);
   }
 
+  deleteEmpleado(empleadoToDelete: Empleado): Observable<Empleado> {
+    this.empleados = this.empleados.filter(h => h !== empleadoToDelete);
+    return of(empleadoToDelete);
+  }
 }
