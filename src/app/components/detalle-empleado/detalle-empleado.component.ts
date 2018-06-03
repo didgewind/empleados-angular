@@ -63,12 +63,17 @@ export class DetalleEmpleadoComponent implements OnInit {
       .subscribe(empleado => this.empleado = empleado);
   }
 
+  /*
+   * Invocado cuando pulsamos el botón de guardar para crear o actualizar
+   * un empleado
+   */
   save() {
-    this.empleadosDetalleService.nuevoEmpleadoCreado(this.empleado);
+    this.empleadosDetalleService.empleadoActualizado(this.empleado);
   }
 
   close(): void {
     // Cambiar por un close del componente de alguna manera
+    // Quizás navegar a la ruta padre?
     this.location.back();
   }
 

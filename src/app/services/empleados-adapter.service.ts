@@ -13,7 +13,7 @@ export class EmpleadosAdapterService implements EmpleadosIntService {
 
   private empleadosService: EmpleadosIntService;
 
-  constructor( empleadosService: EmpleadosMockService, private mensajesService: MensajesService ) {
+  constructor( empleadosService: EmpleadosRestService, private mensajesService: MensajesService ) {
     this.empleadosService = empleadosService;
   }
 
@@ -31,4 +31,10 @@ export class EmpleadosAdapterService implements EmpleadosIntService {
     this.mensajesService.add(`Recuperado el empleado con id=${id}`);
     return this.empleadosService.getEmpleado(id);
   }
+
+  updateEmpleado (updatedEmpleado: Empleado): Observable<Empleado> {
+    this.mensajesService.add(`Actualizado el empleado con id=${updatedEmpleado.id}`);
+    return this.empleadosService.updateEmpleado(updatedEmpleado);
+  }
+
 }

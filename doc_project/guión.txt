@@ -50,3 +50,13 @@ cambiamos la ruta) ni en los métodos http (Observables finitos).
 - Servicio Rest con json-server. Inyectarlo en lista. Problema: incoherencia
 entre dashboard, lista y detalle. ¿Hace falta cambiarlo siempre en todos? No,
 podemos utilizar un adapter.
+- Formularios. Hablar de las Template Variables. Usar spy.classList o spy.className para
+ver las clases de validación.
+- Validar los campos del formulario. Para la edad necesitamos instalar ng2-validation
+(https://github.com/yuyang041060120/ng2-validation)
+- Habilitar o deshabilitar el botón de guardar en función de que el formulario sea
+válido o no (ngForm)
+- Añadir el updateEmpleado y modificar la lista de empleados para actualizar o crear
+un nuevo empleado cuando el detalleEmpleado emita un nuevo empleado (cambiar los nombres
+de los métodos intermedios de nuevoEmpleado a actualizaEmpleado). La lista decide
+si es un nuevo empleado o uno a actualizar en función de id === 0.

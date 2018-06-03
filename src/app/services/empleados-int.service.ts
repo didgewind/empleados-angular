@@ -10,4 +10,5 @@ export interface EmpleadosIntService {
     getAllEmpleados(): Observable<Empleado[]>;
     addEmpleado(newEmpleado: Empleado): Observable<Empleado>;
     getEmpleado(id: number): Observable<Empleado>;
+    updateEmpleado(updatedEmpleado: Empleado): Observable<Empleado>;
 }

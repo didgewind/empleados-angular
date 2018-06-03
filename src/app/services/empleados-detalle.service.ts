@@ -11,14 +11,14 @@ import { Subject } from 'rxjs';
 })
 export class EmpleadosDetalleService {
 
-  private nuevoEmpleadoSource = new Subject<Empleado>();
+  private empleadoActualizadoSource = new Subject<Empleado>();
 
-  nuevoEmpleado$ = this.nuevoEmpleadoSource.asObservable();
+  empleadoActualizado$ = this.empleadoActualizadoSource.asObservable();
 
   constructor() { }
 
-  nuevoEmpleadoCreado(empleado: Empleado) {
-    this.nuevoEmpleadoSource.next(empleado);
+  empleadoActualizado(empleado: Empleado) {
+    this.empleadoActualizadoSource.next(empleado);
   }
 
 }

@@ -26,4 +26,9 @@ export class EmpleadosRestService implements EmpleadosIntService {
     const url = `${this.empleadosRestURL}/${id}`;
     return this.http.get<Empleado>(url);
   }
+
+  updateEmpleado (updatedEmpleado: Empleado): Observable<Empleado> {
+    const url = `${this.empleadosRestURL}/${updatedEmpleado.id}`;
+    return this.http.put<Empleado>(url, updatedEmpleado);
+  }
 }

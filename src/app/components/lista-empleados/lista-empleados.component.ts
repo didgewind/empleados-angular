@@ -34,17 +34,34 @@ export class ListaEmpleadosComponent implements OnInit, OnDestroy {
     this.getEmpleadosFromService();
     // Nos subscribimos al Observable del servicio de comunicaciones
     // con detalle-empleado para recibir los detalles de los empleados
-    // creados
-    this.empleadosDetalleService.nuevoEmpleado$.pipe(
-        takeUntil(this.ngUnsubscribe)) // Para desubscribirnos en el ngDestroy
+    // creados o actualizados
+    this.empleadosDetalleService.empleadoActualizado$.pipe(
+      takeUntil(this.ngUnsubscribe)) // Para desubscribirnos en el ngDestroy
       .subscribe(
-        // Cuando recibimos un empleado nuevo del componente DetalleEmpleado
+        // Cuando recibimos un empleado nuevo o actualizado del componente DetalleEmpleado
         // se lo comunicamos al servicio
-        empleadoNuevo => this.empleadosService.addEmpleado(empleadoNuevo).subscribe(
-          empleado => {
-            this.empleados.push(empleado);
-            this.empleadoSeleccionado = empleado;
-      }));
+        empleadoNuevo => {
+          /* Se trata de un empleado nuevo. Lo comunicamos al servicio
+             y cuando éste responde añadimos el empleado al array */
+          if (empleadoNuevo.id === 0) {
+            this.empleadosService.addEmpleado(empleadoNuevo).subscribe(
+              empleado => {
+                this.empleados.push(empleado);
+                this.empleadoSeleccionado = empleado;
+            });
+          } else {  // Estamos actualizando el empleado
+            this.empleadosService.updateEmpleado(empleadoNuevo).subscribe(
+              empleado => {
+                this.empleados.find((oldEmpleado, index) => {
+                  if (oldEmpleado.id === empleado.id) {
+                    this.empleados[index] = empleado;
+                    return true;
+                  }
+                });
+                // TODO: deshabilitar el botón de guardar?
+            });
+          }
+      });
   }
 
   /*

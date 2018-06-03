@@ -38,4 +38,22 @@ export class EmpleadosMockService  implements EmpleadosIntService {
     return of(this.empleados.find(empleado => empleado.id === id));
   }
 
+  /*
+    Todo esto en realidad no hace falta porque al modificar
+    en un componente un objeto Empleado se modifica también en este
+    array porque son el mismo objeto, pero está bien
+    dejarlo aquí por si queremos simularlo mejor clonando
+    los objetos al intercambiarlos con otras capas
+  */
+  updateEmpleado (updatedEmpleado: Empleado): Observable<Empleado> {
+    const foundEmpleado = this.empleados.find((oldEmpleado, index) => {
+      if (oldEmpleado.id === updatedEmpleado.id) {
+        this.empleados[index] = updatedEmpleado;
+        return true;
+      }
+    });
+    // TODO: comprobar si foundEmpleado es undefined y entonces retornar error
+    return of(foundEmpleado);
+  }
+
 }
