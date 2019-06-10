@@ -1,6 +1,8 @@
+import { DetalleEmpleadoReactiveComponent } from './components/detalle-empleado-reactive/detalle-empleado-reactive.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ListaEmpleadosComponent } from './components/lista-empleados/lista-empleados.component';
@@ -16,6 +18,7 @@ import { CustomFormsModule } from 'ng2-validation';
     AppComponent,
     ListaEmpleadosComponent,
     DetalleEmpleadoComponent,
+    DetalleEmpleadoReactiveComponent,
     MensajesComponent,
     DashboardComponent
   ],
@@ -24,7 +27,8 @@ import { CustomFormsModule } from 'ng2-validation';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    CustomFormsModule
+    CustomFormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

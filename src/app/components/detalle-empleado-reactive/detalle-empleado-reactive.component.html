@@ -1,0 +1,48 @@
+<div *ngIf="empleado">
+  <div><form #empForm="ngForm">
+    <h2>Detalles de {{ nombre.value | uppercase }} {{ apellidos.value | uppercase }} </h2>
+    <div><span>id:</span> {{empleado.id}}</div>
+    <div><label>cif: 
+      <input [formControl]="cif" placeholder="cif" name="cif"
+        required pattern="\d{8}[A-Z]"></label></div>
+    <div *ngIf="cif.invalid && (cif.dirty || cif.touched)" class="alert">
+      <div *ngIf="cif.errors.required">
+        El cif es obligatorio.
+      </div>
+      <div *ngIf="cif.errors.pattern">
+        El cif debe estar compuesto de 8 números y una letra mayúscula.
+      </div>
+    </div>
+
+    <div><label>nombre:  <input [formControl]="nombre" name="nombre"
+            placeholder="nombre" required></label></div>
+    <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert">
+      <div *ngIf="nombre.errors.required">
+        El nombre es obligatorio.
+      </div>
+    </div>
+  
+    <div><label>apellidos:  <input [formControl]="apellidos" name="apellidos"
+            placeholder="apellidos"  required></label></div>
+    <div *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)" class="alert">
+      <div *ngIf="apellidos.errors.required">
+        Los apellidos son obligatorios.
+      </div>
+    </div>
+    
+    <div><label>edad:  <input [formControl]="edad" name="edad"
+            placeholder="edad" required
+            [min]="16"></label></div>
+    <div *ngIf="edad.invalid && (edad.dirty || edad.touched)" class="alert">
+      <div *ngIf="edad.errors.required">
+          La edad es obligatoria.
+      </div>
+      <div *ngIf="edad.errors?.min">
+          La edad no puede ser menor de 16 años.
+      </div>
+    </div>
+    
+    <button (click)="save()" [disabled]="!empForm.valid">Guardar</button>
+    <button (click)="close()">Cerrar</button>
+  </form></div>
+</div>

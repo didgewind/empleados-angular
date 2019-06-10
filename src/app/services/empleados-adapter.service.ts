@@ -14,7 +14,7 @@ export class EmpleadosAdapterService implements EmpleadosIntService {
 
   private empleadosService: EmpleadosIntService;
 
-  constructor( empleadosService: EmpleadosRestService, private mensajesService: MensajesService ) {
+  constructor( empleadosService: EmpleadosMockService, private mensajesService: MensajesService ) {
     this.empleadosService = empleadosService;
   }
 

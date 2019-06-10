@@ -1,3 +1,4 @@
+import { DetalleEmpleadoReactiveComponent } from './components/detalle-empleado-reactive/detalle-empleado-reactive.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DetalleEmpleadoComponent } from './components/detalle-empleado/detalle-empleado.component';
 import { ListaEmpleadosComponent } from './components/lista-empleados/lista-empleados.component';
@@ -10,11 +11,11 @@ const routes: Routes = [
       children: [
         {
           path: 'detalle/:id',
-          component: DetalleEmpleadoComponent
+          component: DetalleEmpleadoReactiveComponent
         },
         {
           path: 'nuevoEmpleado',
-          component: DetalleEmpleadoComponent
+          component: DetalleEmpleadoReactiveComponent
         }
 
       ]
