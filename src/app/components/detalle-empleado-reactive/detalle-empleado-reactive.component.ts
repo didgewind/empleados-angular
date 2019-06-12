@@ -5,16 +5,16 @@ import { Empleado } from './../../model/empleado';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 /*
  * Componente que muestra los detalles de un empleado. El empleado a mostrar
  * lo obtendrá bien directamente del servicio (si estamos mostrando una
  * nueva instancia del componente) o a través del servicio de comunicación
  * (si ya estamos mostrando el componente y seleccionamos un empleado nuevo
- * en la lista o en el dashboard). Utilizamos un formulario reactivo, de
- * momento con formcontrols aislados y sin validación global (faltaría
- * el formgroup)
+ * en la lista o en el dashboard). Utilizamos un formulario reactivo agrupando
+ * todos los formcontrol en un formgroup (inicializamos el formgroup con un
+ * objeto Empleado)
  */
 @Component({
   selector: 'app-detalle-empleado-reactive',
@@ -24,17 +24,22 @@ import { FormControl } from '@angular/forms';
 export class DetalleEmpleadoReactiveComponent implements OnInit {
 
   empleado: Empleado;
-  cif = new FormControl();
-  nombre = new FormControl();
-  apellidos = new FormControl();
-  edad = new FormControl();
+  empForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private empleadosService: EmpleadosAdapterService,
     private empleadosDetalleService: EmpleadosDetalleService,
-    private location: Location
-  ) { }
+    private location: Location,
+    private formBuilder: FormBuilder
+  ) {
+    this.empForm = this.createFormGroup();
+   }
+
+  /* Creación del FormGroup*/
+  private createFormGroup(): FormGroup {
+    return this.formBuilder.group(new Empleado());
+  }
 
 
   ngOnInit(): void {
@@ -71,11 +76,13 @@ export class DetalleEmpleadoReactiveComponent implements OnInit {
       .subscribe(empleado => this.empleado = empleado);
   }
 
+  /* Actualiza el formulario con los valores del empleado actual */
   private updateForm() {
-    this.cif.setValue(this.empleado.cif);
-    this.nombre.setValue(this.empleado.nombre);
-    this.apellidos.setValue(this.empleado.apellidos);
-    this.edad.setValue(this.empleado.edad);
+    const form = this.empForm;
+    form.get('cif').setValue(this.empleado.cif);
+    form.get('nombre').setValue(this.empleado.nombre);
+    form.get('apellidos').setValue(this.empleado.apellidos);
+    form.get('edad').setValue(this.empleado.edad);
   }
 
   /*
@@ -84,14 +91,17 @@ export class DetalleEmpleadoReactiveComponent implements OnInit {
    */
   save() {
     this.updateEmpleadoFromForm();
+    console.log(this.empleado);
     this.empleadosDetalleService.empleadoActualizado(this.empleado);
   }
 
+  /* Actualiza el empleado actual con los valores del formulario */
   private updateEmpleadoFromForm() {
-    this.empleado.cif = this.cif.value;
-    this.empleado.nombre = this.nombre.value;
-    this.empleado.apellidos = this.apellidos.value;
-    this.empleado.edad = this.edad.value;
+    const form = this.empForm.value;
+    this.empleado.cif = form.cif;
+    this.empleado.nombre = form.nombre;
+    this.empleado.apellidos = form.apellidos;
+    this.empleado.edad = form.edad;
   }
 
   close(): void {
@@ -99,5 +109,11 @@ export class DetalleEmpleadoReactiveComponent implements OnInit {
     // Quizás navegar a la ruta padre?
     this.location.back();
   }
+
+  /* Métodos get de ayuda para acceso fácil desde el template */
+  get cif() { return this.empForm.get('cif'); }
+  get nombre() { return this.empForm.get('nombre'); }
+  get apellidos() { return this.empForm.get('apellidos'); }
+  get edad() { return this.empForm.get('edad'); }
 
 }
