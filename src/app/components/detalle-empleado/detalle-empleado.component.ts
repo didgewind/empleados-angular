@@ -3,7 +3,7 @@ import { EmpleadosDetalleService } from './../../services/empleados-detalle.serv
 import { EmpleadosMockService } from './../../services/empleados-mock.service';
 import { Empleado } from './../../model/empleado';
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 /*
@@ -26,7 +26,7 @@ export class DetalleEmpleadoComponent implements OnInit {
     private route: ActivatedRoute,
     private empleadosService: EmpleadosAdapterService,
     private empleadosDetalleService: EmpleadosDetalleService,
-    private location: Location
+    private router: Router
   ) { }
 
 
@@ -72,9 +72,7 @@ export class DetalleEmpleadoComponent implements OnInit {
   }
 
   close(): void {
-    // Cambiar por un close del componente de alguna manera
-    // Quizás navegar a la ruta padre?
-    this.location.back();
+    this.router.navigate([ '../..' ], { relativeTo: this.route });
   }
 
 }
